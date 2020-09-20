@@ -1,0 +1,32 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.margin-top-2 {
+    margin-top: 2rem;
+}
+.margin-1rem {
+    margin: 1rem;
+}
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.w-50 {
+    width: 50%;
+}
+.d-flex {
+    display: flex;
+}
+.justify-content-sa {
+    justify-content: space-around;
+}
+.color-gray {
+    color: gray;
+}
+.grid-4 {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20%;
+    text-align: center;
+}

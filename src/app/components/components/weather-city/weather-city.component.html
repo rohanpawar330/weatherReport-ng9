@@ -1,0 +1,29 @@
+<div class="align-select">
+
+
+    <mat-form-field appearance="fill">
+        <mat-label>Country</mat-label>
+        <mat-select [(ngModel)]="selectedCountry" name="country" (selectionChange)="selectCountry()">
+
+            <mat-option *ngFor="let item of countryList" [value]="item.country">{{item?.country}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill" *ngIf="selectedCountry">
+        <mat-label>State</mat-label>
+        <mat-select [(ngModel)]="selectedState" name="state" (selectionChange)="selectState()">
+
+            <mat-option [value]="item?.state" *ngFor="let item of stateList">{{item?.state}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="selectedState" >
+        <mat-label>City</mat-label>
+        <mat-select [(ngModel)]="selectedCity" name="city" (selectionChange)="selectedCityFromList()">
+
+            <mat-option [value]="item?.city" *ngFor="let item of cityList">{{item?.city}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+</div>

@@ -1,0 +1,72 @@
+<div *ngIf="weatherReport">
+    <mat-card class="margin-1rem">
+        <div class="d-flex justify-content-sa">
+            <mat-card-header>
+                <div mat-card-avatar><img
+                        src="http://openweathermap.org/img/w/{{weatherReport?.weather[0]?.icon}}.png" />
+                </div>
+                <mat-card-title>{{weatherReport?.name}} , {{weatherReport?.sys?.country}} --
+                    {{weatherReport?.dt | date}}
+                </mat-card-title>
+                <mat-card-subtitle>
+
+                    <div>latitude : "{{weatherReport?.coord?.lat}}" || longitude : "{{weatherReport?.coord?.lon}}"</div>
+                    <div> Maximum Temperature of the day will be<strong>
+                            {{(weatherReport?.main?.temp - 273.12).toFixed(2)}} 'C</strong></div>
+                    <div>Hey It's <strong>"{{weatherReport?.weather[0]?.main}}"</strong></div>
+
+                </mat-card-subtitle>
+
+            </mat-card-header>
+            <mat-card-content class="color-gray w-50">
+                <div>Hello user , by Default you'll see the Pune location weather</div>
+                <p>Choose the Country then States and atlast City to get the weather, if you select the Country it'll
+                    show
+                    country weather and then you'll find the states of that country </p>
+                <p>Choose the state and you'll see the weather of state , and then the cities of tha state</p>
+            </mat-card-content>
+        </div>
+
+        <mat-accordion>
+            <mat-expansion-panel class="w-50">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        See more Report on weather ...
+                    </mat-panel-title>
+
+                </mat-expansion-panel-header>
+                <mat-card-subtitle>
+                    You'll see <strong>{{weatherReport?.weather[0]?.description}}</strong> Today!...
+                </mat-card-subtitle>
+                <div class="grid-2">
+                    <div>Wind Speed : {{weatherReport?.wind?.speed}}</div>
+                    <div>Humidity : {{weatherReport?.main?.humidity}}</div>
+                    <div>Pressure : {{weatherReport?.main?.pressure}}</div>
+                    <div>Sunrise/Sunset Time :
+                        {{weatherReport?.sys?.sunrise | date:'shortTime'}}/{{weatherReport?.sys?.sunset | date:'shortTime'}}
+                    </div>
+                </div>
+
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-card>
+</div>
+<div class="center margin-top-2">
+    <fusioncharts width="90%" height="400" type="msline" [dataSource]="dataSource">
+    </fusioncharts>
+</div>
+
+<div>
+    <div class="grid-4">
+        <div>S.No.</div>
+        <div>Date</div>
+        <div (click)="onClick('maxTemp')">Max Temp.</div>
+        <div (click)="onClick('minTemp')">Min Temp</div>
+    </div>
+    <div class="grid-4" *ngFor="let item of tableData;let i = index">
+        <div>{{i+1}}</div>
+        <div>{{item.dt}}</div>
+        <div>{{item.temp.max}}</div>
+        <div>{{item.temp.min}}</div>
+    </div>
+</div>
